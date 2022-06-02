@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Mykhailo Movchan](https://up.htmlacademy.ru/javascript/26/user/1044579).
-* Наставник: `Михаил Кислый`.
+* Наставник: [Михаил Кислый](https://up.htmlacademy.ru/javascript/26/user/118577).
 
 ---
 
