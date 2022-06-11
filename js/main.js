@@ -1,6 +1,3 @@
-const FLOAT_NUMBERS = 5;
-const TOTAL_ADVERTS = 10;
-const TOTAL_AVATAR_URLS = 10;
 const TITLES = [
   'Апартаменты-студио Лофт на 23 этаже',
   'Люкс-апартаменты с видом на море',
@@ -9,14 +6,10 @@ const TITLES = [
   'VIP-студио',
   'Уютная квартира'
 ];
-const MAX_PRICE = 1000;
 const PROPERTY_TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
-const MAX_ROOMS = 10;
-const ROOMS_TO_GUESTS_RATIO = 2;
-const CHECKIN_TIME = ['12:00', '13:00', '14:00'];
-const CHECKOUT_TIME = ['12:00', '13:00', '14:00'];
+const TIMES = ['12:00', '13:00', '14:00'];
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-const DESCTIPTIONS = [
+const DESCRIPTIONS = [
   'Квартира расположена в новом престижном комплексе Вторая жемчужина. Дизайн и интерьер, выполненный в средиземноморском стиле.',
   'Квартира в элитном новострое, в самом центре города. 200 м от железнодорожного вокзала.',
   'В квартире очень чисто - после каждого гостя производится качественная уборка.',
@@ -27,6 +20,13 @@ const PHOTO_ULRS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'
 ];
+
+const FLOAT_NUMBERS = 5;
+const TOTAL_ADVERTS = 10;
+const TOTAL_AVATAR_URLS = 10;
+const MAX_PRICE = 1000;
+const MAX_ROOMS = 10;
+const ROOMS_TO_GUESTS_RATIO = 2;
 const MIN_LAT = 35.65;
 const MAX_LAT = 35.7;
 const MIN_LNG = 139.7;
@@ -84,7 +84,6 @@ const createAdvert = () => {
   const randomLat = getRandomFloatInclusive(MIN_LAT, MAX_LAT);
   const randomLng = getRandomFloatInclusive(MIN_LNG, MAX_LNG);
   return {
-    // author: {avatar: createAvatarUrl()[randomAvatarIndex]}, // строка — адрес изображения вида img/avatars/user{{xx}}.png, где {{xx}} — это число от 1 до 10. Перед однозначными числами ставится 0. Например, 01, 02...10. Адреса изображений не повторяются.
     author: {avatar: getRandomArrayElement(createAvatarUrl())}, // строка — адрес изображения вида img/avatars/user{{xx}}.png, где {{xx}} — это число от 1 до 10. Перед однозначными числами ставится 0. Например, 01, 02...10. Адреса изображений не повторяются.
     offer: {title: getRandomArrayElement(TITLES), // строка — заголовок предложения. Придумайте самостоятельно.
       address: `обьект расположен по координатам: ${randomLat} градус ширины, ${randomLng} градус долготы`, //  строка — адрес предложения. Для простоты пусть пока составляется из географических координат по маске {{location.lat}}, {{location.lng}}
@@ -92,10 +91,10 @@ const createAdvert = () => {
       type: getRandomArrayElement(PROPERTY_TYPE), // строка — одно из пяти фиксированных значений: palace, flat, house, bungalow или hotel
       rooms: randomRoomsNumber, // число — количество комнат. Случайное целое положительное число.
       guests: randomGuestsNumber, // число — количество гостей, которое можно разместить. Случайное целое положительное число
-      checkin: getRandomArrayElement(CHECKIN_TIME), // строка — одно из трёх фиксированных значений: 12:00, 13:00 или 14:00
-      checkout: getRandomArrayElement(CHECKOUT_TIME), //  строка — одно из трёх фиксированных значений: 12:00, 13:00 или 14:00
+      checkin: getRandomArrayElement(TIMES), // строка — одно из трёх фиксированных значений: 12:00, 13:00 или 14:00
+      checkout: getRandomArrayElement(TIMES), //  строка — одно из трёх фиксированных значений: 12:00, 13:00 или 14:00
       features: createFeatures(), // массив строк — массив случайной длины из значений: wifi, dishwasher, parking, washer, elevator, conditioner. Значения не должны повторяться.
-      description: getRandomArrayElement(DESCTIPTIONS), // строка — описание помещения. Придумайте самостоятельно.
+      description: getRandomArrayElement(DESCRIPTIONS), // строка — описание помещения. Придумайте самостоятельно.
       photos: createPhotoUrls(), //массив строк — массив случайной длины из значений:
     },
     location: {
@@ -106,4 +105,4 @@ const createAdvert = () => {
 };
 
 const similarAdverts = Array.from({length: TOTAL_ADVERTS}, createAdvert);
-if (similarAdverts === 0) {Math.random();}
+similarAdverts();
