@@ -32,16 +32,10 @@ const MAX_LAT = 35.7;
 const MIN_LNG = 139.7;
 const MAX_LNG = 139.8;
 
-// функцтя генерирует массив url аватаров
-const createAvatarUrl = () => {
-  const avatarUlrs = [];
-  for(let i = 1; i <= TOTAL_AVATAR_URLS; i++){
-    avatarUlrs.push(`img/avatars/user${String(i).padStart(2,'0')}.png`);
-  }
-  return avatarUlrs;
-};
+// генерирует массив url аватаров
+const avatarUrlList = Array.from({length: TOTAL_AVATAR_URLS}, (v, k) => `img/avatars/user${String(++k).padStart(2,'0')}.png`);
 
-// функция генерирует массив ссылок фотографий
+// функция рандомно генерирует массив ссылок фотографий
 const createPhotoUrls = () => {
   const photoUrl = [];
   for (let i = 0; i < PHOTO_ULRS.length; i++) {
@@ -52,7 +46,7 @@ const createPhotoUrls = () => {
   return photoUrl;
 };
 
-// функция создает массив фич в квартире
+// функция создает массив рандомных фич в квартире
 const createFeatures = () => {
   const featuresList = [];
   for (let i = 0; i < FEATURES.length; i++) {
@@ -84,7 +78,7 @@ const createAdvert = () => {
   const randomLat = getRandomFloatInclusive(MIN_LAT, MAX_LAT);
   const randomLng = getRandomFloatInclusive(MIN_LNG, MAX_LNG);
   return {
-    author: {avatar: getRandomArrayElement(createAvatarUrl())}, // строка — адрес изображения вида img/avatars/user{{xx}}.png, где {{xx}} — это число от 1 до 10. Перед однозначными числами ставится 0. Например, 01, 02...10. Адреса изображений не повторяются.
+    author: {avatar: getRandomArrayElement(avatarUrlList)}, // строка — адрес изображения вида img/avatars/user{{xx}}.png, где {{xx}} — это число от 1 до 10. Перед однозначными числами ставится 0. Например, 01, 02...10. Адреса изображений не повторяются.
     offer: {title: getRandomArrayElement(TITLES), // строка — заголовок предложения. Придумайте самостоятельно.
       address: `обьект расположен по координатам: ${randomLat} градус ширины, ${randomLng} градус долготы`, //  строка — адрес предложения. Для простоты пусть пока составляется из географических координат по маске {{location.lat}}, {{location.lng}}
       price: getRandomIntInclusive(0, MAX_PRICE),  // число — стоимость. Случайное целое положительное число.
