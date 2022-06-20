@@ -19,7 +19,7 @@ const DESCRIPTIONS = [
   'В квартире очень чисто - после каждого гостя производится качественная уборка.',
   'Современные апартаменты находятся в непосредственной близости от чарующих пляжей. Апартаменты расположены в престижном жилом комплексе.',
 ];
-const PHOTO_ULRS = [
+const PHOTO_URLS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
@@ -38,9 +38,9 @@ const createAvatarId = () => {
 // функция рандомно генерирует массив ссылок фотографий
 const createPhotoUrls = () => {
   const photoUrl = [];
-  for (let i = 0; i < PHOTO_ULRS.length; i++) {
+  for (let i = 0; i < PHOTO_URLS.length; i++) {
     if (Math.round(Math.random())) {
-      photoUrl.push(PHOTO_ULRS[i]);
+      photoUrl.push(PHOTO_URLS[i]);
     }
   }
   return photoUrl;
