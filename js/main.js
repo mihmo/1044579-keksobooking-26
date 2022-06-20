@@ -1,5 +1,5 @@
 import {similarAdverts} from './data.js';
 
 
-// similarAdverts;
-console.log(similarAdverts);
+similarAdverts();
+// console.log(similarAdverts);
