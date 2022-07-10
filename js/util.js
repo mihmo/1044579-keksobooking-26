@@ -1,4 +1,5 @@
 import { FLOAT_NUMBERS } from './setup.js';
+
 // функция проверяет, что введенные данные >= 0
 const checkNumbers = (min, max)  => !!((min >= 0 && max >= 0));
 
@@ -12,4 +13,7 @@ const getRandomIntInclusive = (a, b) => {
 
 const getRandomFloatInclusive = (min, max, decimal = FLOAT_NUMBERS) => checkNumbers(min, max) ? (Math.random() * (max - min) + min).toFixed(decimal) : 'Указаны не верные параметры'; // Максимум и минимум включаются
 
-export {getRandomIntInclusive, getRandomFloatInclusive};
+// функция склоняет числовые значения, взял тут https://realadmin.ru/coding/sklonenie-na-javascript.html
+const declOfNumbers = (number, words) => words[(number % 100 > 4 && number % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(number % 10 < 5) ? Math.abs(number) % 10 : 5]];
+
+export {getRandomIntInclusive, getRandomFloatInclusive, declOfNumbers};
