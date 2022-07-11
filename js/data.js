@@ -1,7 +1,6 @@
 import { getRandomFloatInclusive, getRandomIntInclusive } from './util.js';
 import { TOTAL_ADVERTS, MAX_ROOMS, ROOMS_TO_GUESTS_RATIO, MIN_LAT, MAX_LAT, MIN_LNG, MAX_LNG, MAX_PRICE } from './setup.js';
 
-
 const TITLES = [
   'Апартаменты-студио Лофт на 23 этаже',
   'Люкс-апартаменты с видом на море',
@@ -11,6 +10,13 @@ const TITLES = [
   'Уютная квартира',
 ];
 const PROPERTY_TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+const PROPERTY_TYPE_DICTIONARY = {
+  flat: 'Квартира', // Квартира для flat
+  bungalow: 'Бунгало', // Бунгало для bungalow
+  house: 'Дом', // Дом для house
+  palace: 'Дворец', // Дворец для palace
+  hotel: 'Отель' // Отель для hotel
+};
 const TIMES = ['12:00', '13:00', '14:00'];
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const DESCRIPTIONS = [
@@ -22,9 +28,8 @@ const DESCRIPTIONS = [
 const PHOTO_ULRS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'
 ];
-
 
 // функция создает ссылку на аватар (используя прерывание)
 const createAvatarId = () => {
@@ -87,5 +92,6 @@ const createAdvert = () => {
   };
 };
 
-const similarAdverts = Array.from({length: TOTAL_ADVERTS}, createAdvert);
+const similarAdverts = () => Array.from({length: TOTAL_ADVERTS}, createAdvert);
 export {similarAdverts};
+export {PROPERTY_TYPE_DICTIONARY};

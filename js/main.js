@@ -1,5 +1,5 @@
-import {similarAdverts} from './data.js';
+import './popup.js';
+import { toggleDisable, toggleEnabled } from './toggle.js';
 
-
-similarAdverts();
-// console.log(similarAdverts);
+toggleDisable();
+toggleEnabled();

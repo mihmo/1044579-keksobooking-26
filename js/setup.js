@@ -1,6 +1,5 @@
 export const FLOAT_NUMBERS = 5;
-export const TOTAL_ADVERTS = 10;
-export const TOTAL_AVATAR_URLS = 10;
+export const TOTAL_ADVERTS = 3;
 export const MAX_PRICE = 1000;
 export const MAX_ROOMS = 10;
 export const ROOMS_TO_GUESTS_RATIO = 2;
