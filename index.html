@@ -99,16 +99,15 @@
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="type">Тип жилья</label>
           <select id="type" name="type">
-            <option value="bungalow">Бунгало</option> <!-- минимальная цена за ночь 0, placeholder="0" -->
-            <option value="flat" selected>Квартира</option> <!-- минимальная цена за ночь 1000 -->
-            <option value="hotel">Отель</option> <!-- минимальная цена за ночь 3000 -->
-            <option value="house">Дом</option> <!-- минимальная цена за ночь 5000 -->
-            <option value="palace">Дворец</option> <!-- минимальная цена за ночь 10000, placeholder="10000"-->
+            <option value="bungalow">Бунгало</option>
+            <option value="flat" selected>Квартира</option>
+            <option value="hotel">Отель</option>
+            <option value="house">Дом</option>
+            <option value="palace">Дворец</option>
           </select>
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="price">Цена за ночь, руб.</label>
-          <!-- placeholder="должен меняться"-->
           <input id="price" name="price" type="number" placeholder="5000" required min="0" max="100000"
           data-pristine-required-message="Укажите цену"
           data-pristine-min-message="Минимальная цена за ночь, 0 руб"
@@ -130,7 +129,6 @@
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="rooms">Количество комнат</label>
-          <!-- room_number - ошибка? -->
           <select required id="rooms" name="rooms">
             <option value="1" selected>1 комната</option>
             <option value="2">2 комнаты</option>
@@ -140,7 +138,10 @@
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="capacity">Количество мест</label>
-          <select required id="capacity" name="capacity">
+          <select required id="capacity" name="capacity" min="0" max="3"
+          data-pristine-required-message="Укажите цену"
+          data-pristine-min-message="Минимальная цена за ночь, 0 руб"
+          data-pristine-max-message="Максимальная цена за ночь, 100 000 руб">
             <option value="3" selected>для 3 гостей</option>
             <option value="2">для 2 гостей</option>
             <option value="1">для 1 гостя</option>
