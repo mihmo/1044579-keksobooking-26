@@ -8,7 +8,7 @@ const newAdvertTimeout = newAdvertForm.querySelector('[name="timeout"]');
 const newAdvertRooms = newAdvertForm.querySelector('[name="rooms"]');
 const newAdvertCapacity = newAdvertForm.querySelector('[name="capacity"]');
 
-// Поля «Время заезда» и «Время выезда» синхронизированы
+// Поля «Время заезда» и «Время выезда»  синхронизированы
 newAdvertTimein.addEventListener('change', () => {
   newAdvertTimeout.value = newAdvertTimein.value;
 });
