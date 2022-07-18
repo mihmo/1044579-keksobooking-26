@@ -17,6 +17,13 @@ const PROPERTY_TYPE_DICTIONARY = {
   palace: 'Дворец', // Дворец для palace
   hotel: 'Отель' // Отель для hotel
 };
+const PROPERTY_TYPE_PRICE = {
+  bungalow: 0, // минимальная цена за ночь 0
+  flat: 1000, // минимальная цена за ночь 1000
+  hotel: 3000, // минимальная цена за ночь 3000
+  house: 5000, // минимальная цена за ночь 5000
+  palace: 10000 // минимальная цена за ночь 10 000
+};
 const TIMES = ['12:00', '13:00', '14:00'];
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const DESCRIPTIONS = [
@@ -94,4 +101,4 @@ const createAdvert = () => {
 
 const similarAdverts = () => Array.from({length: TOTAL_ADVERTS}, createAdvert);
 export {similarAdverts};
-export {PROPERTY_TYPE_DICTIONARY};
+export {PROPERTY_TYPE_DICTIONARY, PROPERTY_TYPE_PRICE};
