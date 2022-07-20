@@ -4,6 +4,7 @@ import { similarAdverts } from './data.js';
 
 const newAdvertForm = document.querySelector('.ad-form');
 const newAdvertAddress = newAdvertForm.querySelector('[name="address"]');
+newAdvertAddress.style.cssText = 'pointer-events: none; opacity: 0.5';
 
 
 // const resetButton = document.querySelector('#reset');
@@ -52,7 +53,8 @@ const mainPinMarker = L.marker(
 mainPinMarker.addTo(map);
 
 mainPinMarker.on('moveend', (evt) => {
-  newAdvertAddress.value = `${evt.target.getLatLng().lat} ${evt.target.getLatLng().lng}`;
+  // newAdvertAddress.value = `${evt.target.getLatLng().lat}, ${evt.target.getLatLng().lng}`;
+  newAdvertAddress.value = evt.target.getLatLng();
 });
 
 // настройки остальных пинов
