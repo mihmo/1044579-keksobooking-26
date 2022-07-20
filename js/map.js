@@ -52,9 +52,10 @@ const mainPinMarker = L.marker(
 
 mainPinMarker.addTo(map);
 
+newAdvertAddress.value = '35.68000, 139.75000';
 mainPinMarker.on('moveend', (evt) => {
-  // newAdvertAddress.value = `${evt.target.getLatLng().lat}, ${evt.target.getLatLng().lng}`;
-  newAdvertAddress.value = evt.target.getLatLng();
+  newAdvertAddress.value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
+  // newAdvertAddress.value = evt.target.getLatLng();
 });
 
 // настройки остальных пинов
