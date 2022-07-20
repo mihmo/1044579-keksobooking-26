@@ -27,6 +27,7 @@ newAdvertPrice.addEventListener('change', () => {
   sliderElement.noUiSlider.set(newAdvertPrice.value);
 });
 
+// eslint-disable-next-line no-unused-vars
 sliderElement.noUiSlider.on('update', (...rest) => {
   newAdvertPrice.value = sliderElement.noUiSlider.get();
 });
