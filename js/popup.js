@@ -1,14 +1,8 @@
-import { similarAdverts } from './data.js';
+
 import { PROPERTY_TYPE_DICTIONARY } from './data.js';
 import { declOfNumbers } from './util.js';
 
-//const kuda = true;
 const advertTemplate = document.querySelector('#card').content.querySelector('.popup');
-const mapCanvas = document.querySelector('.map__canvas');
-
-const advertsList = similarAdverts();
-
-let adverticed = false;
 
 const checkContent = (element, data) => {
   if (data.length > 0) {
@@ -18,7 +12,7 @@ const checkContent = (element, data) => {
   }
 };
 
-advertsList.forEach((advert) => {
+const createCustomAdvert = (advert) => {
   const advertElement = advertTemplate.cloneNode(true);
   const roomNumberDictionary = declOfNumbers(advert.offer.rooms, ['комната', 'комнаты', 'комнат']);
   const guestNumberDictionary = declOfNumbers(advert.offer.guests, ['гостя', 'гостей', 'гостей']);
@@ -29,7 +23,7 @@ advertsList.forEach((advert) => {
   const advertPhoto = advertPhotoContainer.querySelector('.popup__photo');
 
   // Предусмотрите ситуацию, когда данных для заполнения не хватает. Например, отсутствует описание. В этом случае соответствующий блок в карточке скрывается.
-  // Выведите заголовок объявления offer.title в заголовок .
+  // Выведите заголовок объявления offer.title в заголовок.
   checkContent(advertElement.querySelector('.popup__title'), advert.offer.title);
 
   // Выведите адрес offer.address в блок .popup__text--address.
@@ -101,8 +95,12 @@ advertsList.forEach((advert) => {
   }
 
   // Отрисуйте один из сгенерированных DOM-элементов, например первый, в блок #map-canvas, чтобы проверить, что данные в разметку были вставлены корректно.
-  if (!adverticed) {
-    mapCanvas.appendChild(advertElement);
-    adverticed = true;
-  }
-});
+  // if (!adverticed) {
+  //   mapCanvas.appendChild(advertElement);
+  //   adverticed = true;
+  // }
+
+  return advertElement;
+};
+
+export {createCustomAdvert};

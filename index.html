@@ -4,6 +4,11 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="nouislider/nouislider.css">
+  <!-- link rel="stylesheet" href="leaflet/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" / -->
+  <link rel="stylesheet" href="leaflet/leaflet.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>Кексобукинг</title>
 </head>
@@ -18,8 +23,8 @@
     <!-- Карта объявлений -->
     <section class="map">
 
-      <!-- Блок для вставки карты -->
-      <div class="map__canvas" id="map-canvas"></div>
+      <!-- Блок для вставки карты. В уроке было: style="width: 640px; height: 480px;" В CSS 500px -->
+      <div class="map__canvas" id="map-canvas" style="height: 500px;"></div>
 
       <!-- Фильтрация объявлений -->
       <div class="map__filters-container">
@@ -94,7 +99,7 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="address">Адрес (координаты)</label>
-          <input id="address" name="address" type="text" disabled>
+          <input id="address" name="address" type="text">
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="type">Тип жилья</label>
@@ -239,7 +244,12 @@
   </template>
 
   <script src="pristine/pristine.min.js" type="text/javascript"></script>
-  <script type="module" src="js/main.js"></script>
+  <script src="nouislider/nouislider.js" type="text/javascript"></script>
+  <!-- script src="leaflet/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin="" -->
+  <script src="leaflet/leaflet.js"></script>
+  <script src="js/main.js" type="module"></script>
 
 </body>
 </html>
