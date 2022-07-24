@@ -1,4 +1,8 @@
 import { PROPERTY_TYPE_PRICE } from './data.js';
+import { sendData } from './api.js';
+import { showErrorMessage, showSuccessMessage } from './messages.js';
+
+// console.log('form.js');
 
 const newAdvertForm = document.querySelector('.ad-form');
 const newAdvertPrice = newAdvertForm.querySelector('[name="price"]');
@@ -43,7 +47,18 @@ pristine.addValidator(newAdvertPrice, () => {
   return false;
 }, 'Указана слишком низкая цена', 2, false);
 
+// const setAdvertFormSubmit = (onSuccess) => { // если оборачиваю в переменную - пристин ломается, форма отправляется, ничего не работает
 newAdvertForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
   const isValid = pristine.validate();
-  if (!isValid) {evt.preventDefault();}
+  if (isValid) {
+    sendData(
+      () => showSuccessMessage(),
+      () => showErrorMessage(),
+      new FormData(evt.target),
+    );
+  }
 });
+
+// export {setAdvertFormSubmit};

@@ -1,18 +1,20 @@
+import { getData } from './api.js';
 import { toggleDisable, toggleEnabled } from './toggle.js';
 import { createCustomAdvert } from './popup.js';
-import { similarAdverts } from './data.js';
+// import { similarAdverts } from './data.js';
+
+// console.log('map.js');
 
 const newAdvertForm = document.querySelector('.ad-form');
 const newAdvertAddress = newAdvertForm.querySelector('[name="address"]');
 newAdvertAddress.style.cssText = 'pointer-events: none; opacity: 0.5';
-
 
 // const resetButton = document.querySelector('#reset');
 
 // отключаем интерфейс до загрузки
 toggleDisable();
 
-const advertsList = similarAdverts();
+// const advertsList = similarAdverts();
 
 // настройки карты
 const map = L.map('map-canvas')
@@ -69,6 +71,7 @@ const icon = L.icon({
 const markerGroup = L.layerGroup().addTo(map);
 
 const createMarker = (advert) => {
+  // console.log(advert);
   const {location: {lat, lng}} = advert;
   const marker = L.marker(
     {
@@ -85,8 +88,12 @@ const createMarker = (advert) => {
     .bindPopup(createCustomAdvert(advert));
 };
 
-advertsList.forEach((advert) => {
-  createMarker(advert);
+getData((adverts) => {
+  // console.log(adverts.slice(0, 10));
+  adverts.slice(0, 10)
+    .forEach((advert) => {
+      createMarker(advert);
+    });
 });
 
 // markerGroup.clearLayers();
