@@ -1,6 +1,7 @@
-
 import { PROPERTY_TYPE_DICTIONARY } from './data.js';
 import { declOfNumbers } from './util.js';
+
+// console.log('popup.js');
 
 const advertTemplate = document.querySelector('#card').content.querySelector('.popup');
 
@@ -78,17 +79,20 @@ const createCustomAdvert = (advert) => {
   }
 
   // В список .popup__features выведите все доступные удобства в объявлении.
-  featuresList.forEach((featuresListItem) => {
-    const isNecessary =  advert.offer.features.some(
-      (propertyFeature) => featuresListItem.classList.contains(`popup__feature--${  propertyFeature}`),
-    );
-    if (!isNecessary) {
-      featuresListItem.remove();
-    }
-  });
+  if (advert.offer.features) {
+    featuresList.forEach((featuresListItem) => {
+      const isNecessary = advert.offer.features.some(
+        (propertyFeature) => featuresListItem.classList.contains(`popup__feature--${propertyFeature}`),
+      );
+      if (!isNecessary) {
+        featuresListItem.remove();
+      }
+    });
+  }
+
 
   // В блок .popup__description выведите описание объекта недвижимости offer.description.
-  if (advert.offer.description.length) {
+  if (advert.offer.description) {
     advertElement.querySelector('.popup__description').textContent = advert.offer.description;
   } else {
     advertElement.querySelector('.popup__description').classList.add('visually-hidden');
