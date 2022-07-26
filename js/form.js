@@ -1,8 +1,6 @@
-import { PROPERTY_TYPE_PRICE } from './data.js';
+import { PROPERTY_TYPE_PRICE } from './setup.js';
 import { sendData } from './api.js';
 import { showErrorMessage, showSuccessMessage } from './messages.js';
-
-// console.log('form.js');
 
 const newAdvertForm = document.querySelector('.ad-form');
 const newAdvertPrice = newAdvertForm.querySelector('[name="price"]');

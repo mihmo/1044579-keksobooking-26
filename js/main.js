@@ -1,8 +1,10 @@
-import './api.js';
-import './popup.js';
-import './form.js';
-import './slider.js';
-import './messages.js';
 import './map.js';
-
-// console.log('main.js');
+import './popup.js';
+import './toggle.js';
+import './slider.js';
+import './form.js';
+import './api.js';
+import './reset.js';
+import './filter.js';
+import './messages.js';
+import './preview.js';

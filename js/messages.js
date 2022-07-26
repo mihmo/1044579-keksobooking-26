@@ -1,3 +1,5 @@
+import { MSG_TIMEOUT } from './setup.js';
+
 const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
 
@@ -13,7 +15,7 @@ const showSuccessMessage = () => {
   document.body.append(successMessage);
   setTimeout(() => {
     successMessage.remove();
-  }, 2500);
+  }, MSG_TIMEOUT);
 };
 
 const showErrorMessage = () => {

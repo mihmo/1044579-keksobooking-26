@@ -1,10 +1,10 @@
-// console.log('api.js');
-
-const getData = (onSuccess) => {
+const getData = (onSuccess, onFail) => {
   fetch('https://26.javascript.pages.academy/keksobooking/data')
+    .then((response) => response.ok ? response : onFail('Не удалось получить данные. Пожалуйста попробуйте позже.'))
     .then((response) => response.json())
-    .then((adverts) => {
-      onSuccess(adverts);
+    .then((adverts) => onSuccess(adverts))
+    .catch(() => {
+      onFail('Не удалось получить данные. Пожалуйста попробуйте позже.');
     });
 };
 
@@ -16,15 +16,9 @@ const sendData = (onSuccess, onFail, body) => {
       body,
     },
   )
-    .then((responce) => {
-      if (responce.ok) {
-        onSuccess(); // showSuccessMessage();
-      } else {
-        onFail(); // showErrorMessage();
-      }
-    })
+    .then((response) => response.ok ? onSuccess() : onFail('Не удалось отправить данные. Пожалуйста попробуйте позже.'))
     .catch(() => {
-      onFail(); // showErrorMessage();
+      onFail('Не удалось отправить данные. Пожалуйста попробуйте позже.');
     });
 };
 
