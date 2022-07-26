@@ -48,7 +48,6 @@ const mainPinMarker = L.marker(
     icon: mainPinIcon,
   },
 );
-
 mainPinMarker.addTo(map);
 
 newAdvertAddress.value = `${START_LAT.toFixed(5)}, ${START_LNG.toFixed(5)}`;
@@ -82,7 +81,6 @@ const createMarker = (advert, index) => {
       icon,
     },
   );
-
   marker
     .addTo(advertsLayer)
     .bindPopup(advertsFragment.children[index]);
@@ -97,7 +95,6 @@ function getAdvertsPoints(adverts) {
   });
 }
 
-// const resetButton...
 const resetMap = () => {
   mainPinMarker.setLatLng([START_LAT, START_LNG]).update();
   map.setView({

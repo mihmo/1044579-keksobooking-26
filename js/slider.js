@@ -1,4 +1,4 @@
-import { DEFAULT_PRICE } from './setup.js';
+import { DEFAULT_PRICE, UPPER_PRICE } from './setup.js';
 
 const sliderElement = document.querySelector('.ad-form__slider');
 const newAdvertForm = document.querySelector('.ad-form');
@@ -9,7 +9,7 @@ newAdvertPrice.value = DEFAULT_PRICE;
 noUiSlider.create(sliderElement, {
   range: {
     min: 0,
-    max: 100000,
+    max: UPPER_PRICE,
   },
   start: DEFAULT_PRICE,
   step: 1,

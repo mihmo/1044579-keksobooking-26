@@ -13,6 +13,7 @@ export const START_LNG = 139.75;
 export const DEFAULT_PRICE = 5000;
 export const LOW_PRICE = 10000;
 export const HIGH_PRICE = 50000;
+export const UPPER_PRICE = 100000;
 export const RENDER_DELAY = 700;
 
 const PROPERTY_TYPE_DICTIONARY = {

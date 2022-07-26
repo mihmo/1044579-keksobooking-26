@@ -36,7 +36,6 @@ pristine.addValidator(newAdvertCapacity, () => {
 // Поле «Тип жилья» влияет на минимальное значение поля «Цена за ночь»:
 newAdvertType.addEventListener('change', () => {
   newAdvertPrice.placeholder = PROPERTY_TYPE_PRICE[newAdvertType.value];
-  // newAdvertPrice.min = PROPERTY_TYPE_PRICE[newAdvertType.value];
 });
 pristine.addValidator(newAdvertPrice, () => {
   if (newAdvertPrice.value >= PROPERTY_TYPE_PRICE[newAdvertType.value]){
@@ -45,10 +44,9 @@ pristine.addValidator(newAdvertPrice, () => {
   return false;
 }, 'Указана слишком низкая цена', 2, false);
 
-// const setAdvertFormSubmit = (onSuccess) => { // если оборачиваю в переменную - пристин ломается, форма отправляется, ничего не работает
+// выполняем проверки перед отправкой
 newAdvertForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-
   const isValid = pristine.validate();
   if (isValid) {
     sendData(
@@ -58,5 +56,3 @@ newAdvertForm.addEventListener('submit', (evt) => {
     );
   }
 });
-
-// export {setAdvertFormSubmit};
