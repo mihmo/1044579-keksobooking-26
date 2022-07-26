@@ -1,30 +1,27 @@
+import { toggleEnabled } from './toggle.js';
 import { getData } from './api.js';
-import { toggleDisable, toggleEnabled } from './toggle.js';
 import { createCustomAdvert } from './popup.js';
-// import { similarAdverts } from './data.js';
+import { START_LAT, START_LNG, TOTAL_ADVERTS } from './setup.js';
+import { showErrorMessage } from './messages.js';
 
-// console.log('map.js');
-
+// отключаю возможность менять значение адреса вручную
 const newAdvertForm = document.querySelector('.ad-form');
 const newAdvertAddress = newAdvertForm.querySelector('[name="address"]');
 newAdvertAddress.style.cssText = 'pointer-events: none; opacity: 0.5';
-
-// const resetButton = document.querySelector('#reset');
-
-// отключаем интерфейс до загрузки
-toggleDisable();
-
-// const advertsList = similarAdverts();
 
 // настройки карты
 const map = L.map('map-canvas')
   .on('load', () => {
     // включаем интерфейс после загрузки карты
     toggleEnabled();
+    getData((adverts) => {
+      const advertsList = adverts.slice(0, TOTAL_ADVERTS);
+      getAdvertsPoints(advertsList);
+    }, showErrorMessage);
   })
   .setView({
-    lat: 35.6800,
-    lng: 139.75,
+    lat: START_LAT,
+    lng: START_LNG,
   }, 13);
 
 L.tileLayer(
@@ -43,35 +40,37 @@ const mainPinIcon = L.icon({
 
 const mainPinMarker = L.marker(
   {
-    lat: 35.6800,
-    lng: 139.75,
+    lat: START_LAT,
+    lng: START_LNG,
   },
   {
     draggable: true,
     icon: mainPinIcon,
   },
 );
-
 mainPinMarker.addTo(map);
 
-newAdvertAddress.value = '35.68000, 139.75000';
+newAdvertAddress.value = `${START_LAT.toFixed(5)}, ${START_LNG.toFixed(5)}`;
 mainPinMarker.on('moveend', (evt) => {
   newAdvertAddress.value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
-  // newAdvertAddress.value = evt.target.getLatLng();
 });
 
 // настройки остальных пинов
-
 const icon = L.icon({
   iconUrl: './img/pin.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
 
-const markerGroup = L.layerGroup().addTo(map);
+// функция создает маркеры на карте
+let advertsFragment;
+let advertsLayer = L.layerGroup().addTo(map);
+const clearLayer = () => {
+  map.removeLayer(advertsLayer);
+  advertsLayer = L.layerGroup().addTo(map);
+};
 
-const createMarker = (advert) => {
-  // console.log(advert);
+const createMarker = (advert, index) => {
   const {location: {lat, lng}} = advert;
   const marker = L.marker(
     {
@@ -82,42 +81,27 @@ const createMarker = (advert) => {
       icon,
     },
   );
-
   marker
-    .addTo(markerGroup)
-    .bindPopup(createCustomAdvert(advert));
+    .addTo(advertsLayer)
+    .bindPopup(advertsFragment.children[index]);
 };
 
-getData((adverts) => {
-  // console.log(adverts.slice(0, 10));
-  adverts.slice(0, 10)
-    .forEach((advert) => {
-      createMarker(advert);
-    });
-});
 
-// markerGroup.clearLayers();
+function getAdvertsPoints(adverts) {
+  advertsFragment = createCustomAdvert(adverts);
+  clearLayer();
+  adverts.forEach((advert, index) => {
+    createMarker(advert, index);
+  });
+}
 
+const resetMap = () => {
+  mainPinMarker.setLatLng([START_LAT, START_LNG]).update();
+  map.setView({
+    lat: START_LAT,
+    lng: START_LNG,
+  }, 13);
+  newAdvertAddress.value = `${START_LAT.toFixed(5)}, ${START_LNG.toFixed(5)}`;
+};
 
-// markers.forEach((marker) => {
-//   marker.remove();
-// });
-
-// advertsList.forEach((point) => {
-//   createMarker(point);
-// });
-
-
-// ==============================================
-
-// resetButton.addEventListener('click', () => {
-//   mainPinMarker.setLatLng({
-//     lat: 59.96831,
-//     lng: 30.31748,
-//   });
-
-//   map.setView({
-//     lat: 59.96831,
-//     lng: 30.31748,
-//   }, 16);
-// });
+export { getAdvertsPoints, resetMap };

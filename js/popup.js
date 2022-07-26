@@ -1,7 +1,5 @@
-import { PROPERTY_TYPE_DICTIONARY } from './data.js';
+import { PROPERTY_TYPE_DICTIONARY } from './setup.js';
 import { declOfNumbers } from './util.js';
-
-// console.log('popup.js');
 
 const advertTemplate = document.querySelector('#card').content.querySelector('.popup');
 
@@ -90,19 +88,12 @@ const createCustomAdvert = (advert) => {
     });
   }
 
-
   // В блок .popup__description выведите описание объекта недвижимости offer.description.
   if (advert.offer.description) {
     advertElement.querySelector('.popup__description').textContent = advert.offer.description;
   } else {
     advertElement.querySelector('.popup__description').classList.add('visually-hidden');
   }
-
-  // Отрисуйте один из сгенерированных DOM-элементов, например первый, в блок #map-canvas, чтобы проверить, что данные в разметку были вставлены корректно.
-  // if (!adverticed) {
-  //   mapCanvas.appendChild(advertElement);
-  //   adverticed = true;
-  // }
 
   return advertElement;
 };

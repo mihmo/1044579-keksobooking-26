@@ -16,4 +16,12 @@ const getRandomFloatInclusive = (min, max, decimal = FLOAT_NUMBERS) => checkNumb
 // функция склоняет числовые значения, взял тут https://realadmin.ru/coding/sklonenie-na-javascript.html
 const declOfNumbers = (number, words) => words[(number % 100 > 4 && number % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(number % 10 < 5) ? Math.abs(number) % 10 : 5]];
 
-export {getRandomIntInclusive, getRandomFloatInclusive, declOfNumbers};
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { getRandomIntInclusive, getRandomFloatInclusive, declOfNumbers, debounce };
