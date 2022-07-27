@@ -63,13 +63,14 @@ const icon = L.icon({
 });
 
 // функция создает маркеры на карте
-let advertsFragment;
 let advertsLayer = L.layerGroup().addTo(map);
 const clearLayer = () => {
   map.removeLayer(advertsLayer);
   advertsLayer = L.layerGroup().addTo(map);
 };
 
+// создаем пины с балунами
+let advertsFragment;
 const createMarker = (advert, index) => {
   const {location: {lat, lng}} = advert;
   const marker = L.marker(
@@ -83,12 +84,13 @@ const createMarker = (advert, index) => {
   );
   marker
     .addTo(advertsLayer)
-    .bindPopup(advertsFragment.children[index]);
+    .bindPopup(createCustomAdvert(advertsFragment[index]));
 };
 
-
+// функция отрисовывает пины
 function getAdvertsPoints(adverts) {
-  advertsFragment = createCustomAdvert(adverts);
+  advertsFragment = adverts;
+
   clearLayer();
   adverts.forEach((advert, index) => {
     createMarker(advert, index);

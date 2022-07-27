@@ -67,8 +67,7 @@ const compareAdsFeatures = (adA, adB) =>{
   return rankB - rankA;
 };
 
-
-export const resetFilter = () =>{
+const resetFilter = () =>{
   getData((adverts) => {
     const advertsList = adverts
       .filter(filterAdType)
@@ -76,7 +75,6 @@ export const resetFilter = () =>{
       .filter(filterAdGuests)
       .filter(filterAdPrice)
       .filter(filterAdFeatures)
-      .slice()
       .sort(compareAdsFeatures)
       .slice(0, TOTAL_ADVERTS);
     getAdvertsPoints(advertsList);
@@ -84,3 +82,5 @@ export const resetFilter = () =>{
 };
 
 mapFiltersForm.addEventListener('change', debounce(resetFilter, RENDER_DELAY));
+
+export { resetFilter };

@@ -2,10 +2,7 @@ const getData = (onSuccess, onFail) => {
   fetch('https://26.javascript.pages.academy/keksobooking/data')
     .then((response) => response.ok ? response : onFail('Не удалось получить данные. Пожалуйста попробуйте позже.'))
     .then((response) => response.json())
-    .then((adverts) => onSuccess(adverts))
-    .catch(() => {
-      onFail('Не удалось получить данные. Пожалуйста попробуйте позже.');
-    });
+    .then((adverts) => onSuccess(adverts));
 };
 
 const sendData = (onSuccess, onFail, body) => {
