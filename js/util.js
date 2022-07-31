@@ -24,4 +24,6 @@ const debounce = (callback, timeoutDelay) => {
   };
 };
 
-export { getRandomIntInclusive, getRandomFloatInclusive, declOfNumbers, debounce };
+const isEscapeKey = (evt) => (evt.keyCode === 27);
+
+export { getRandomIntInclusive, getRandomFloatInclusive, declOfNumbers, debounce, isEscapeKey };

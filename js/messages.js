@@ -1,4 +1,5 @@
 import { MSG_TIMEOUT } from './setup.js';
+import { isEscapeKey } from './util.js';
 
 const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
@@ -13,6 +14,13 @@ errorButton.addEventListener('click', () => {
 
 const showSuccessMessage = () => {
   document.body.append(successMessage);
+  successMessage.addEventListener('click', () => successMessage.remove());
+  document.addEventListener('keydown', (evt) => {
+    if (isEscapeKey(evt)) {
+      evt.preventDefault();
+      successMessage.remove();
+    }
+  });
   setTimeout(() => {
     successMessage.remove();
   }, MSG_TIMEOUT);
