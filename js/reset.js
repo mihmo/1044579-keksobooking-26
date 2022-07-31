@@ -1,4 +1,5 @@
 import { resetFilter } from './filter.js';
+import { resetForm } from './form.js';
 import { resetMap } from './map.js';
 import { resetSlider } from './slider.js';
 
@@ -15,5 +16,6 @@ newAdvertForm.addEventListener('reset', ()=> {
   setTimeout(() => {
     resetMap();
     resetFilter();
+    resetForm();
   });
 });

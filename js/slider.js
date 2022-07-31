@@ -34,7 +34,7 @@ sliderElement.noUiSlider.on('update', (...rest) => {
   newAdvertPrice.value = sliderElement.noUiSlider.get();
 });
 
-const resetSlider = () =>{
+const resetSlider = () => {
   sliderElement.noUiSlider.set(DEFAULT_PRICE);
 };
 

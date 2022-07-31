@@ -1,4 +1,5 @@
 import { PROPERTY_TYPE_PRICE } from './setup.js';
+import { DEFAULT_PRICE } from './setup.js';
 import { sendData } from './api.js';
 import { showErrorMessage, showSuccessMessage } from './messages.js';
 
@@ -9,6 +10,7 @@ const newAdvertTimein = newAdvertForm.querySelector('[name="timein"]');
 const newAdvertTimeout = newAdvertForm.querySelector('[name="timeout"]');
 const newAdvertRooms = newAdvertForm.querySelector('[name="rooms"]');
 const newAdvertCapacity = newAdvertForm.querySelector('[name="capacity"]');
+const submitButton = newAdvertForm.querySelector('.ad-form__submit');
 
 // Поля «Время заезда» и «Время выезда»  синхронизированы
 newAdvertTimein.addEventListener('change', () => {
@@ -44,15 +46,39 @@ pristine.addValidator(newAdvertPrice, () => {
   return false;
 }, 'Указана слишком низкая цена', 2, false);
 
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Публикую...';
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
+};
+
+const resetForm = () => {
+  newAdvertPrice.value = DEFAULT_PRICE;
+};
+
 // выполняем проверки перед отправкой
 newAdvertForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const isValid = pristine.validate();
   if (isValid) {
+    blockSubmitButton();
     sendData(
-      () => showSuccessMessage(),
-      () => showErrorMessage(),
+      () => {
+        showSuccessMessage();
+        unblockSubmitButton();
+      },
+      () => {
+        showErrorMessage();
+        unblockSubmitButton();
+      },
       new FormData(evt.target),
     );
+    newAdvertForm.reset();
   }
 });
+
+export { resetForm };
